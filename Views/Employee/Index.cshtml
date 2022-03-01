@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ImplementationForm.Models.Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <a class="btn btn-sm btn-info mb-2" asp-action="Create" asp-controller="Employee">Create</a>
+            <p class="text-center text-danger">@TempData["error"]</p>
+            <table class="table table-bordered">
+                <tr class="text-center">
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach (var e in Model)
+                {
+                    <tr class="text-center">
+                        <td>@e.Id</td>
+                        <td>@e.Name</td>
+                        <td>@e.City</td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" id="btnDelete">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/jquery/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $.ajax({
+        url: '/script.cgi',
+        type: 'DELETE',
+        success: function (result) {
+            // Do something with the result
+        }
+    });
+</script>
