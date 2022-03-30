@@ -1,44 +1,87 @@
-﻿@model IEnumerable<ImplementationForm.Models.Employee>
+﻿@model IEnumerable<FirstTask.Models.Element>
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-
 <div class="container">
     <div class="row">
-        <div class="col-6 offset-3">
-            <a class="btn btn-sm btn-info mb-2" asp-action="Create" asp-controller="Employee">Create</a>
-            <p class="text-center text-danger">@TempData["error"]</p>
-            <table class="table table-bordered">
-                <tr class="text-center">
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>City</th>
-                    <th>Action</th>
-                </tr>
+        @foreach (var d in Model)
+        {
+            if (d.Id % 2 == 1)
+            {
+                <div class="col-4 offset-1 ">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="text-center text-info">@d.Name</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6"><h2 class="text-center">EmpId</h2></div>
+                                <div class="col-6"><h2 class="text-center text-danger">@d.Id</h2></div>
+                            </div>
 
-                @foreach (var e in Model)
-                {
-                    <tr class="text-center">
-                        <td>@e.Id</td>
-                        <td>@e.Name</td>
-                        <td>@e.City</td>
-                        <td>
-                            <a class="btn btn-sm btn-danger" id="btnDelete">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
+                            <div class="row">
+                                <div class="col-6"><h5 class="text-center font-weight-bold">Designation</h5></div>
+                                <div class="col-6"><h5 class="text-center text-success font-italic font-weight-bold">@d.Designation</h5></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6"><h5 class="text-center">Mobile</h5></div>
+                                <div class="col-6"><p class="text-center">@d.Mobile</p></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6"><h5 class="text-center">Location</h5></div>
+                                <div class="col-6"><p class="text-center">@d.Location</p></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center font-italic">
+                                Arise,Awake, and stop not till the goal is reached.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-4 offset-1 ">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="text-center text-info">@d.Name</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6"><h2 class="text-center">EmpId</h2></div>
+                                <div class="col-6"><h2 class="text-center text-danger">@d.Id</h2></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6"><h5 class="text-center font-weight-bold">Designation</h5></div>
+                                <div class="col-6"><h5 class="text-center text-success font-italic font-weight-bold">@d.Designation</h5></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6"><h5 class="text-center">Mobile</h5></div>
+                                <div class="col-6"><p class="text-center">@d.Mobile</p></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6"><h5 class="text-center">Location</h5></div>
+                                <div class="col-6"><p class="text-center">@d.Location</p></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center font-italic">
+                                Arise,Awake, and stop not till the goal is reached.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
     </div>
 </div>
-<script src="~/jquery/jquery.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    $.ajax({
-        url: '/script.cgi',
-        type: 'DELETE',
-        success: function (result) {
-            // Do something with the result
-        }
-    });
-</script>
+
+
+
